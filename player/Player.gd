@@ -1,32 +1,28 @@
 extends Node2D
 
 const SPEED = 4
-var axis0: float = 0.0
-var axis1: float = 0.0
+var velocity: Vector2 = Vector2(0.0, 0.0)
 
 func _ready():
 	pass
 
 func _physics_process(delta):
+	velocity = Input.get_vector('left0', 'right0', 'up0', 'down0', 0.1)
+	self.translate(velocity * SPEED)
 	
-	self.translate(Vector2(SPEED*axis0, SPEED*axis1))
 
 func _process(delta):
-	if (abs(axis0) > 0.99 or abs(axis1) > 0.99 or abs(axis0)+abs(axis1) > 1.99):
+	if not(velocity.x == 0 and velocity.y == 0):
+		self.set_rotation(atan2(velocity.y, velocity.x))
+	if (abs(velocity.length()) > 0.99):
 		$feet.play('run')
-		print('run')
-	elif (abs(axis0) > 0 or abs(axis1) > 0):
+	elif (abs(velocity.x) > 0 or abs(velocity.y) > 0):
 		$feet.play('walk')
-		print('walk')
+	else:
+		$feet.play('idle')
 
 
 func _input(event):
-	axis0 = Input.get_joy_axis(0, 0)
-	axis1 = Input.get_joy_axis(0, 1)
-#	if (-0.004 > _axis0 or _axis0 > 0.004):
-#		axis0 = _axis0
-#	if (-0.004 > _axis1 or _axis1 > 0.004):
-#		axis1 = _axis1
-	self.set_rotation(atan2(axis1, axis0))
+	pass
 	#print(event.as_text())
 
