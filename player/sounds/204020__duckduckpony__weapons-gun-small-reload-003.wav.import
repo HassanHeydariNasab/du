@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/204020__duckduckpony__weapons-gun-small-reload-003.wav-7365ae96aa1ed0e5be895c45e79052ae.sample"
+
+[deps]
+
+source_file="res://player/sounds/204020__duckduckpony__weapons-gun-small-reload-003.wav"
+dest_files=[ "res://.import/204020__duckduckpony__weapons-gun-small-reload-003.wav-7365ae96aa1ed0e5be895c45e79052ae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
