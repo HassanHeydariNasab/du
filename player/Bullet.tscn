@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Bullet" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
