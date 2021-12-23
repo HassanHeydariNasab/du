@@ -154,9 +154,8 @@ animation = "run"
 frames = SubResource( 2 )
 animation = "idle"
 
-[node name="GunPosition" type="Polygon2D" parent="Body"]
-position = Vector2( 0, 56 )
-polygon = PoolVector2Array( 88, -8, 120, 0, 88, 8 )
+[node name="GunPosition" type="Position2D" parent="Body"]
+position = Vector2( 102, 56 )
 
 [node name="HandgunShoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 101 )

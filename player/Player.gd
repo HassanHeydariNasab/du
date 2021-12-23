@@ -7,17 +7,21 @@ var body_direction: Vector2 = Vector2(0.0, 0.0)
 onready var Feet = $Feet
 onready var Body = $Body
 onready var HandgunShoot = $HandgunShoot
+onready var GunPosition = $Body/GunPosition
+var Bullet = preload('res://player/Bullet.tscn')
+var _Bullet = null
+onready var Bullets = get_node('../Bullets')
 
 
 func _ready():
 	Body.play('idle')
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = Input.get_vector('l_left_0', 'l_right_0', 'l_up_0', 'l_down_0', 0.1)
 	self.translate(velocity * SPEED)
 	
 
-func _process(delta):
+func _process(_delta):
 	if not(velocity.x == 0 and velocity.y == 0):
 		Feet.set_rotation(velocity.angle())
 		if (Body.get_animation() == 'idle'):
@@ -40,6 +44,12 @@ func _input(event):
 		print('fire!')
 		HandgunShoot.play()
 		Body.play('shoot')
+		_Bullet = Bullet.instance()
+		_Bullet.set_global_position(GunPosition.get_global_position())
+		_Bullet.set_rotation(Body.get_rotation())
+		Bullets.add_child(_Bullet)
+		
+		
 
 
 func _on_Body_animation_finished():
