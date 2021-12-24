@@ -7,3 +7,8 @@ func _ready():
 
 func _physics_process(delta):
 	self.move_local_x(SPEED)
+
+
+func _on_Bullet_body_entered(body):
+	body.health -= 1
+	self.queue_free()

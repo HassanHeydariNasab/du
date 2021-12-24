@@ -1,12 +1,16 @@
-extends Node2D
+extends KinematicBody2D
 
-var id = '0'
+export var id: String = '0'
 
-const SPEED = 4
+const SPEED: int = 150
 var velocity: Vector2 = Vector2(0.0, 0.0)
 var body_direction: Vector2 = Vector2(0.0, 0.0)
 const BULLETS: int = 16
 var bullets: int = BULLETS
+const HEALTH: int = 10
+var health: float = HEALTH setget set_health, get_health
+onready var HealthBar0: ProgressBar = get_node("../../HUD/Health0")
+onready var HealthBar1: ProgressBar = get_node("../../HUD/Health1")
 
 onready var Feet = $Feet
 onready var Body = $Body
@@ -24,7 +28,7 @@ func _ready():
 
 func _physics_process(_delta):
 	velocity = Input.get_vector('l_left_'+id, 'l_right_'+id, 'l_up_'+id, 'l_down_'+id, 0.1)
-	self.translate(velocity * SPEED)
+	self.move_and_slide(velocity * SPEED)
 	
 
 func _process(_delta):
@@ -69,3 +73,18 @@ func _on_Body_animation_finished():
 	elif Body.get_animation() == 'reload':
 		bullets = BULLETS
 		Body.play('idle')
+
+func set_health(value):
+	print(value)
+	if value <= 0:
+		health = 0
+	else:
+		health = value
+	if id == '0':
+		HealthBar0.set_as_ratio(health/HEALTH)
+	else:
+		HealthBar1.set_as_ratio(health/HEALTH)
+
+
+func get_health():
+	return health
