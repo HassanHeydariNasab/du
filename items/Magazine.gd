@@ -19,3 +19,7 @@ func _on_Magazine_body_entered(body):
 func _on_FadeOut_tween_completed(object, key):
 	if (key == ':modulate' and object == Symbol):
 		queue_free()
+
+
+func _on_TTL_timeout():
+	FadeOut.start()

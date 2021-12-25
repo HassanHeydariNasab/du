@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://HUD/HealthBarBG.tres" type="StyleBox" id=5]
 [ext_resource path="res://HUD/magazine.png" type="Texture" id=6]
 [ext_resource path="res://theme.tres" type="Theme" id=7]
-[ext_resource path="res://items/Magazine.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -26,9 +25,6 @@ scale = Vector2( 0.5, 0.5 )
 id = "1"
 
 [node name="Items" type="Node2D" parent="."]
-
-[node name="Magazine" parent="Items" instance=ExtResource( 8 )]
-position = Vector2( 552, 248 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -154,8 +150,8 @@ position = Vector2( 64, 8 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 6 )
 
-[node name="Magazine" parent="." instance=ExtResource( 8 )]
-position = Vector2( 376, 432 )
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
 
-[node name="Magazine2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 704, 456 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
