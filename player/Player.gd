@@ -5,12 +5,22 @@ export var id: String = '0'
 const SPEED: int = 150
 var velocity: Vector2 = Vector2(0.0, 0.0)
 var body_direction: Vector2 = Vector2(0.0, 0.0)
+
 const BULLETS: int = 16
-var bullets: int = BULLETS
+var bullets: int = BULLETS setget set_bullets, get_bullets
+
+const MAGAZINES: int = 3
+var magazines: int = MAGAZINES setget set_magazines
+
 const HEALTH: int = 10
 var health: float = HEALTH setget set_health, get_health
+
 onready var HealthBar0: ProgressBar = get_node("../../HUD/Health0")
 onready var HealthBar1: ProgressBar = get_node("../../HUD/Health1")
+onready var Magazine0: TextureProgress = get_node("../../HUD/Magazine0")
+onready var Magazine1: TextureProgress = get_node("../../HUD/Magazine1")
+onready var Magazines0: Label = get_node("../../HUD/Magazines0")
+onready var Magazines1: Label = get_node("../../HUD/Magazines1")
 
 onready var Feet = $Feet
 onready var Body = $Body
@@ -53,10 +63,10 @@ func _process(_delta):
 func _input(event):
 	#print(event.as_text())
 	if event.is_action_pressed('fire_'+id):
-		if bullets == 0:
+		if self.bullets == 0:
 			HandgunFailure.play()
 		else:
-			bullets -= 1
+			self.bullets -= 1
 			Body.play('shoot')
 			HandgunShoot.play()
 			_Bullet = Bullet.instance()
@@ -64,18 +74,19 @@ func _input(event):
 			_Bullet.set_rotation(Body.get_rotation())
 			Bullets.add_child(_Bullet)
 	if event.is_action_pressed('reload_'+id):
-		Body.play('reload')
-		HandgunReload.play()
+		if self.magazines > 0:
+			Body.play('reload')
+			HandgunReload.play()
 
 func _on_Body_animation_finished():
 	if Body.get_animation() == 'shoot':
 		Body.play('idle')
 	elif Body.get_animation() == 'reload':
-		bullets = BULLETS
+		self.bullets = BULLETS
+		self.magazines -= 1
 		Body.play('idle')
 
 func set_health(value):
-	print(value)
 	if value <= 0:
 		health = 0
 	else:
@@ -85,6 +96,22 @@ func set_health(value):
 	else:
 		HealthBar1.set_as_ratio(health/HEALTH)
 
-
 func get_health():
 	return health
+
+func set_bullets(value):
+	bullets = value
+	if id == '0':
+		Magazine0.set_value(value)
+	else:
+		Magazine1.set_value(value)
+		
+func get_bullets():
+	return bullets
+
+func set_magazines(value):
+	magazines = value
+	if id == '0':
+		Magazines0.set_text(str(value) + ' X')
+	else:
+		Magazines1.set_text(str(value) + ' X')
