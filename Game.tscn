@@ -150,8 +150,13 @@ position = Vector2( 64, 8 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 6 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="MagazineTimer" type="Timer" parent="."]
 wait_time = 7.0
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[node name="HealthTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="MagazineTimer" to="." method="_on_MagazineTimer_timeout"]
+[connection signal="timeout" from="HealthTimer" to="." method="_on_HealthTimer_timeout"]

@@ -91,6 +91,8 @@ func _on_Body_animation_finished():
 func set_health(value):
 	if value <= 0:
 		health = 0
+	elif value > HEALTH:
+		health = HEALTH
 	else:
 		health = value
 	if id == '0':
