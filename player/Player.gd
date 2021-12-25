@@ -32,6 +32,8 @@ var Bullet = preload('res://player/Bullet.tscn')
 var _Bullet = null
 onready var Bullets = get_node('../../Bullets')
 
+onready var PickupSound = $PickupSound
+
 
 func _ready():
 	Body.play('idle')
@@ -110,8 +112,10 @@ func get_bullets():
 	return bullets
 
 func set_magazines(value):
-	magazines = value
 	if id == '0':
 		Magazines0.set_text(str(value) + ' X')
 	else:
 		Magazines1.set_text(str(value) + ' X')
+	if value > magazines:
+		PickupSound.play()
+	magazines = value

@@ -14,9 +14,9 @@ config/name="du"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
-[display]
+[gui]
 
-window/stretch/mode="viewport"
+theme/custom="res://theme.tres"
 
 [input]
 
@@ -129,6 +129,7 @@ reload_1={
 
 2d_physics/layer_1="players"
 2d_physics/layer_2="bullets"
+2d_physics/layer_3="items"
 
 [physics]
 

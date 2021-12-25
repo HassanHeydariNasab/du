@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/sprites/feet/walk/survivor-walk_8.png" type="Texture" id=2]
@@ -103,6 +103,7 @@
 [ext_resource path="res://player/sounds/427598__michorvath__ar15-pistol-shot.wav" type="AudioStream" id=101]
 [ext_resource path="res://player/sounds/387483__cosmicembers__empty-gun-failure-to-fire-trigger-pull.wav" type="AudioStream" id=102]
 [ext_resource path="res://player/sounds/204020__duckduckpony__weapons-gun-small-reload-003.wav" type="AudioStream" id=103]
+[ext_resource path="res://player/sounds/531903__bepis__pickup9.wav" type="AudioStream" id=104]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -174,5 +175,8 @@ stream = ExtResource( 103 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 104 )
 
 [connection signal="animation_finished" from="Body" to="." method="_on_Body_animation_finished"]

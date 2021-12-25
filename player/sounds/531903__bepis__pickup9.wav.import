@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/531903__bepis__pickup9.wav-0e99fa307759972e9ea4a5a89d47e921.sample"
+
+[deps]
+
+source_file="res://player/sounds/531903__bepis__pickup9.wav"
+dest_files=[ "res://.import/531903__bepis__pickup9.wav-0e99fa307759972e9ea4a5a89d47e921.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

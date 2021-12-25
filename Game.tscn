@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://HUD/HealthBarBG.tres" type="StyleBox" id=5]
 [ext_resource path="res://HUD/magazine.png" type="Texture" id=6]
 [ext_resource path="res://theme.tres" type="Theme" id=7]
+[ext_resource path="res://items/Magazine.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -23,6 +24,11 @@ scale = Vector2( 0.5, 0.5 )
 position = Vector2( 851, 313 )
 scale = Vector2( 0.5, 0.5 )
 id = "1"
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Magazine" parent="Items" instance=ExtResource( 8 )]
+position = Vector2( 552, 248 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -56,7 +62,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HUD"]
+[node name="TerroristLabel" type="Label" parent="HUD"]
 margin_left = 304.0
 margin_right = 416.0
 margin_bottom = 32.0
@@ -68,7 +74,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="HUD"]
+[node name="PoliceLabel" type="Label" parent="HUD"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -416.0
@@ -147,3 +153,9 @@ __meta__ = {
 position = Vector2( 64, 8 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 6 )
+
+[node name="Magazine" parent="." instance=ExtResource( 8 )]
+position = Vector2( 376, 432 )
+
+[node name="Magazine2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 704, 456 )
