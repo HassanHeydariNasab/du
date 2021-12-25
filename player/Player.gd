@@ -12,7 +12,7 @@ var bullets: int = BULLETS setget set_bullets, get_bullets
 const MAGAZINES: int = 3
 var magazines: int = MAGAZINES setget set_magazines
 
-const HEALTH: int = 10
+const HEALTH: int = 5
 var health: float = HEALTH setget set_health, get_health
 
 onready var HealthBar0: ProgressBar = get_node("../../HUD/Health0")
@@ -34,14 +34,19 @@ onready var Bullets = get_node('../../Bullets')
 
 onready var PickupSound = $PickupSound
 
+onready var Menu: Panel = get_node("../../HUD/Menu")
+onready var Winner: Label = get_node("../../HUD/Menu/Winner")
+
 
 func _ready():
 	Body.play('idle')
+
 
 func _physics_process(_delta):
 	velocity = Input.get_vector('l_left_'+id, 'l_right_'+id, 'l_up_'+id, 'l_down_'+id, 0.1)
 	self.move_and_slide(velocity * SPEED)
 	
+
 
 func _process(_delta):
 	if not(velocity.x == 0 and velocity.y == 0):
@@ -62,6 +67,7 @@ func _process(_delta):
 	else:
 		Feet.play('idle')
 
+
 func _input(event):
 	#print(event.as_text())
 	if event.is_action_pressed('fire_'+id):
@@ -80,6 +86,7 @@ func _input(event):
 			Body.play('reload')
 			HandgunReload.play()
 
+
 func _on_Body_animation_finished():
 	if Body.get_animation() == 'shoot':
 		Body.play('idle')
@@ -88,9 +95,17 @@ func _on_Body_animation_finished():
 		self.magazines -= 1
 		Body.play('idle')
 
+
 func set_health(value):
 	if value <= 0:
 		health = 0
+		print(id)
+		if self.id == '1':
+			Winner.set_text('Terrorist Wins!')
+		else:
+			Winner.set_text('Police Wins!')
+		Menu.set_visible(true)
+		queue_free()
 	elif value > HEALTH:
 		health = HEALTH
 	else:
@@ -100,8 +115,10 @@ func set_health(value):
 	else:
 		HealthBar1.set_as_ratio(health/HEALTH)
 
+
 func get_health():
 	return health
+
 
 func set_bullets(value):
 	bullets = value
@@ -109,9 +126,11 @@ func set_bullets(value):
 		Magazine0.set_value(value)
 	else:
 		Magazine1.set_value(value)
-		
+
+
 func get_bullets():
 	return bullets
+
 
 func set_magazines(value):
 	if id == '0':

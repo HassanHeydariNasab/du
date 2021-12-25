@@ -34,3 +34,11 @@ func _on_HealthTimer_timeout():
 		)
 	)
 	Items.add_child(_Health)
+
+
+func _on_Rematch_pressed():
+	self.get_tree().reload_current_scene()
+
+
+func _on_Exit_pressed():
+	self.get_tree().quit(0)
