@@ -231,7 +231,7 @@ __meta__ = {
 }
 
 [node name="MagazineTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="HealthTimer" type="Timer" parent="."]
