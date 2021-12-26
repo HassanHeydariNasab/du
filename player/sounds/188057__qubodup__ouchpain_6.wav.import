@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/188057__qubodup__ouchpain_6.wav-115604bb35acaa70c35c44ecc42e5248.sample"
+
+[deps]
+
+source_file="res://player/sounds/188057__qubodup__ouchpain_6.wav"
+dest_files=[ "res://.import/188057__qubodup__ouchpain_6.wav-115604bb35acaa70c35c44ecc42e5248.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -19,7 +19,7 @@ func _on_MagazineTimer_timeout():
 	_Magazine.set_global_position(
 		Vector2(
 			rand_range(0, viewport.get_size().x),
-			rand_range(0,viewport.get_size().y)
+			rand_range(100, viewport.get_size().y)
 		)
 	)
 	Items.add_child(_Magazine)
@@ -30,7 +30,7 @@ func _on_HealthTimer_timeout():
 	_Health.set_global_position(
 		Vector2(
 			rand_range(0, viewport.get_size().x),
-			rand_range(0,viewport.get_size().y)
+			rand_range(100, viewport.get_size().y)
 		)
 	)
 	Items.add_child(_Health)

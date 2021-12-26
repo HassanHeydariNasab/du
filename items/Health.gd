@@ -12,7 +12,7 @@ func _ready():
 
 func _on_Health_body_entered(body):
 	$CollisionShape2D.free()
-	body.health += 1
+	body.health += 10
 	FadeOut.start()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=116 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/sprites/feet/walk/survivor-walk_8.png" type="Texture" id=2]
@@ -104,6 +104,14 @@
 [ext_resource path="res://player/sounds/387483__cosmicembers__empty-gun-failure-to-fire-trigger-pull.wav" type="AudioStream" id=102]
 [ext_resource path="res://player/sounds/204020__duckduckpony__weapons-gun-small-reload-003.wav" type="AudioStream" id=103]
 [ext_resource path="res://player/sounds/531903__bepis__pickup9.wav" type="AudioStream" id=104]
+[ext_resource path="res://player/sounds/536228__rudmer-rotteveel__velcro-pull-short.wav" type="AudioStream" id=105]
+[ext_resource path="res://player/sounds/188057__qubodup__ouchpain_1.wav" type="AudioStream" id=106]
+[ext_resource path="res://player/sounds/188057__qubodup__ouchpain_2.wav" type="AudioStream" id=107]
+[ext_resource path="res://player/sounds/188057__qubodup__ouchpain_5.wav" type="AudioStream" id=108]
+[ext_resource path="res://player/sounds/188057__qubodup__ouchpain_3.wav" type="AudioStream" id=109]
+[ext_resource path="res://player/sounds/188057__qubodup__ouchpain_6.wav" type="AudioStream" id=110]
+[ext_resource path="res://player/sounds/188057__qubodup__ouchpain_7.wav" type="AudioStream" id=111]
+[ext_resource path="res://player/sounds/188057__qubodup__ouchpain_4.wav" type="AudioStream" id=112]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -178,5 +186,37 @@ shape = SubResource( 3 )
 
 [node name="PickupSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 104 )
+volume_db = 20.0
+
+[node name="HealingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 105 )
+
+[node name="HurtSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 106 )
+volume_db = -10.0
+
+[node name="HurtSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 107 )
+volume_db = -10.0
+
+[node name="HurtSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 109 )
+volume_db = -10.0
+
+[node name="HurtSound4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 112 )
+volume_db = -10.0
+
+[node name="HurtSound5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 108 )
+volume_db = -10.0
+
+[node name="HurtSound6" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 110 )
+volume_db = -10.0
+
+[node name="HurtSound7" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 111 )
+volume_db = -5.0
 
 [connection signal="animation_finished" from="Body" to="." method="_on_Body_animation_finished"]

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var id: String = '0'
+export var id: String = '0' setget set_id
 
 const SPEED: int = 150
 var velocity: Vector2 = Vector2(0.0, 0.0)
@@ -9,10 +9,10 @@ var body_direction: Vector2 = Vector2(0.0, 0.0)
 const BULLETS: int = 16
 var bullets: int = BULLETS setget set_bullets, get_bullets
 
-const MAGAZINES: int = 3
+const MAGAZINES: int = 2
 var magazines: int = MAGAZINES setget set_magazines
 
-const HEALTH: int = 5
+const HEALTH: int = 100
 var health: float = HEALTH setget set_health, get_health
 
 onready var HealthBar0: ProgressBar = get_node("../../HUD/Health0")
@@ -22,17 +22,25 @@ onready var Magazine1: TextureProgress = get_node("../../HUD/Magazine1")
 onready var Magazines0: Label = get_node("../../HUD/Magazines0")
 onready var Magazines1: Label = get_node("../../HUD/Magazines1")
 
-onready var Feet = $Feet
-onready var Body = $Body
-onready var HandgunShoot = $HandgunShoot
-onready var HandgunFailure = $HandgunFailure
-onready var HandgunReload = $HandgunReload
+onready var Feet: AnimatedSprite = $Feet
+onready var Body: AnimatedSprite = $Body
+onready var HandgunShoot: AudioStreamPlayer = $HandgunShoot
+onready var HandgunFailure: AudioStreamPlayer = $HandgunFailure
+onready var HandgunReload: AudioStreamPlayer = $HandgunReload
 onready var GunPosition = $Body/GunPosition
 var Bullet = preload('res://player/Bullet.tscn')
 var _Bullet = null
 onready var Bullets = get_node('../../Bullets')
 
-onready var PickupSound = $PickupSound
+onready var PickupSound: AudioStreamPlayer = $PickupSound
+onready var HealingSound: AudioStreamPlayer = $HealingSound
+onready var HurtSounds: Array = [
+	$HurtSound1, $HurtSound2, $HurtSound3,
+	$HurtSound4, $HurtSound5, $HurtSound6,
+	$HurtSound7
+]
+var random_HurtSound: AudioStreamPlayer = null
+
 
 onready var Menu: Panel = get_node("../../HUD/Menu")
 onready var Winner: Label = get_node("../../HUD/Menu/Winner")
@@ -96,10 +104,20 @@ func _on_Body_animation_finished():
 		Body.play('idle')
 
 
+func set_id(value):
+	id = value
+
+
 func set_health(value):
+	if value > health:
+		HealingSound.play()
+	elif value < health:
+		random_HurtSound = HurtSounds[randi() % 7]
+		if (self.id == '1'):
+			(random_HurtSound as AudioStreamPlayer).set_pitch_scale(2)
+		random_HurtSound.play()
 	if value <= 0:
 		health = 0
-		print(id)
 		if self.id == '1':
 			Winner.set_text('Terrorist Wins!')
 		else:
