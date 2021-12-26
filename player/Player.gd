@@ -15,12 +15,12 @@ var magazines: int = MAGAZINES setget set_magazines
 const HEALTH: int = 100
 var health: float = HEALTH setget set_health, get_health
 
-onready var HealthBar0: ProgressBar = get_node("../../HUD/Health0")
-onready var HealthBar1: ProgressBar = get_node("../../HUD/Health1")
-onready var Magazine0: TextureProgress = get_node("../../HUD/Magazine0")
-onready var Magazine1: TextureProgress = get_node("../../HUD/Magazine1")
-onready var Magazines0: Label = get_node("../../HUD/Magazines0")
-onready var Magazines1: Label = get_node("../../HUD/Magazines1")
+onready var HealthBar0: ProgressBar = get_node("/root/Game/HUD/Health0")
+onready var HealthBar1: ProgressBar = get_node("/root/Game/HUD/Health1")
+onready var Magazine0: TextureProgress = get_node("/root/Game/HUD/Magazine0")
+onready var Magazine1: TextureProgress = get_node("/root/Game/HUD/Magazine1")
+onready var Magazines0: Label = get_node("/root/Game/HUD/Magazines0")
+onready var Magazines1: Label = get_node("/root/Game/HUD/Magazines1")
 
 onready var Feet: AnimatedSprite = $Feet
 onready var Body: AnimatedSprite = $Body
@@ -30,7 +30,7 @@ onready var HandgunReload: AudioStreamPlayer = $HandgunReload
 onready var GunPosition = $Body/GunPosition
 var Bullet = preload('res://player/Bullet.tscn')
 var _Bullet = null
-onready var Bullets = get_node('../../Bullets')
+onready var Bullets = get_node('/root/Game/Bullets')
 
 onready var PickupSound: AudioStreamPlayer = $PickupSound
 onready var HealingSound: AudioStreamPlayer = $HealingSound
@@ -42,8 +42,8 @@ onready var HurtSounds: Array = [
 var random_HurtSound: AudioStreamPlayer = null
 
 
-onready var Menu: Panel = get_node("../../HUD/Menu")
-onready var Winner: Label = get_node("../../HUD/Menu/Winner")
+onready var Menu: Panel = get_node("/root/Game/HUD/Menu")
+onready var Winner: Label = get_node("/root/Game/HUD/Menu/Winner")
 
 
 func _ready():
